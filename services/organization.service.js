@@ -16,8 +16,14 @@ const Create = async (data) => {
     return organization
 }
 
+const FindOneAndUpdate = async (filter, data) => {
+    const organization = await Organization.findOneAndUpdate(filter, {...data})
+    return organization
+}
+
 module.exports = {
     Find,
     FindOne,
-    Create
+    Create,
+    FindOneAndUpdate
 }
