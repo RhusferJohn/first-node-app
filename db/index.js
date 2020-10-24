@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config()
 
-const database_connection = 'mongodb+srv://admin:P%40ssword01@cluster0.teefr.mongodb.net/my_database?retryWrites=true&w=majority'
+const database_connection = process.env.MONGODB_URI
 
 const db = () => {
     mongoose.connect(database_connection, {
