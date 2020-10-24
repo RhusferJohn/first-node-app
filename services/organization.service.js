@@ -12,7 +12,7 @@ const FindOne = async (query) => {
 }
 
 const Create = async (data) => {
-    const organization = await Organization.created(data)
+    const organization = await Organization.create(data)
     return organization
 }
 
