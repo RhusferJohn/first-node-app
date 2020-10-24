@@ -60,5 +60,5 @@ const AddOrganization = async (req, res) => {
 
 module.exports = {
     GetAllOrganizations,
-    Create
+    AddOrganization
 }
