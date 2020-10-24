@@ -4,7 +4,8 @@ const database_connection = 'mongodb+srv://admin:P%40ssword01@cluster0.teefr.mon
 
 const db = () => {
     mongoose.connect(database_connection, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true // Suppress current Server Discovery and Monitoring engine is deprecated warning
     })
 }
 
