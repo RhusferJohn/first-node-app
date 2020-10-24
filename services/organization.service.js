@@ -21,9 +21,15 @@ const FindOneAndUpdate = async (filter, data) => {
     return organization
 }
 
+const DeleteOne = async (filter) => {
+    const organization = await Organization.deleteOne(filter)
+    return organization
+}
+
 module.exports = {
     Find,
     FindOne,
     Create,
-    FindOneAndUpdate
+    FindOneAndUpdate,
+    DeleteOne
 }
