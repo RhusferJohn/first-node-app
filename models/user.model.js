@@ -12,6 +12,14 @@ const UserSchema = new mongoose.Schema(
             type: String,
             enum: ['user', 'ngo_admin', 'super_admin'],
             default: 'user'
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now
         }
     },
     {
