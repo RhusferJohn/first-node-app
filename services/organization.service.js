@@ -1,4 +1,3 @@
-const { query } = require('express')
 const Organization = require('../models/organization.model')
 
 const Find = async () => {

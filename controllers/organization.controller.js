@@ -1,6 +1,3 @@
-const { model } = require('../models/organization.model')
-const Organization = require('../models/organization.model')
-const { FindOneAndUpdate } = require('../services/organization.service')
 const OrganizationService = require('../services/organization.service')
 
 const GetAllOrganizations = async (req, res) => {
@@ -13,7 +10,7 @@ const GetAllOrganizations = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            error: 'Error occured'
+            error: 'Error occurred while fetching organization list'
         })
     }
 }
@@ -54,7 +51,7 @@ const AddOrganization = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            error: 'Error occured'
+            error: 'Error occurred while adding an organization'
         })
     }
 }
@@ -99,7 +96,7 @@ const UpdateOrganization = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            error: 'Error occured'
+            error: 'Error occurred while updating an organization'
         })
     }
 }
@@ -116,7 +113,7 @@ const DeleteOrganization = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            error: 'Error occured'
+            error: 'Error occurred while deleting an organization'
         })
     }
 }
