@@ -21,6 +21,10 @@ const OrganizationSchema = new mongoose.Schema(
     }
 )
 
+OrganizationSchema.pre('findOneAndUpdate', async function () {
+    this.update({}, {$set: { updatedAt: new Date()}})
+})
+
 const Organization = mongoose.model('organization', OrganizationSchema, 'organization')
 
 module.exports = Organization

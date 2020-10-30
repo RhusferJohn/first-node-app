@@ -34,6 +34,10 @@ UserSchema.pre('save', async function (next) {
     next()
 })
 
+UserSchema.pre('findOneAndUpdate', async function () {
+    this.update({}, {$set: { updatedAt: new Date()}})
+})
+
 const User = mongoose.model('user', UserSchema, 'user')
 
 module.exports = User
