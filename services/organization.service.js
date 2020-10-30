@@ -25,10 +25,16 @@ const DeleteOne = async (filter) => {
     return organization
 }
 
+const FindOneAndPopulate = async (query, populate_field) => {
+    const organization = await Organization.findOne(query).populate(populate_field)
+    return organization.admins
+}
+
 module.exports = {
     Find,
     FindOne,
     Create,
     FindOneAndUpdate,
-    DeleteOne
+    DeleteOne,
+    FindOneAndPopulate
 }

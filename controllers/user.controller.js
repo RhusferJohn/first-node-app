@@ -1,5 +1,26 @@
 const UserService = require('../services/user.service')
 
+const GetOrganizationsByUser = async (req, res) => {
+    const { user_id } = req.params
+
+    try {
+        const organizations = await UserService.FindOneAndPopulate(
+            { _id: user_id },
+            'organizations'
+        )
+
+        return res.status(200).json({
+            success: true,
+            data: organizations
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Error occurred while fetching organization list'
+        })
+    }
+}
+
 const GetAllUsers = async (req, res) => {
     try {
         const users = await UserService.Find({})
@@ -64,7 +85,8 @@ const Register = async (req, res) => {
             password,
             language,
             country,
-            userType
+            userType,
+            organizations
         } = req.body
 
         const existing_user = await UserService.FindOne({
@@ -85,7 +107,8 @@ const Register = async (req, res) => {
             password,
             language,
             country,
-            userType
+            userType,
+            organizations
         })
 
         return res.status(200).json({
@@ -109,7 +132,8 @@ const UpdateUser = async (req, res) => {
             email,
             password,
             language,
-            country
+            country,
+            organizations
         } = req.body
 
         const organization = await UserService.FindOne({
@@ -131,7 +155,8 @@ const UpdateUser = async (req, res) => {
                 email,
                 password,
                 language,
-                country
+                country,
+                organizations
             }
         )
 
@@ -165,6 +190,7 @@ const DeleteUser = async (req, res) => {
 }
 
 module.exports = {
+    GetOrganizationsByUser,
     GetAllUsers,
     GetUsersByType,
     GetUserById,

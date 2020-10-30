@@ -1,5 +1,26 @@
 const OrganizationService = require('../services/organization.service')
 
+const GetAdminsByOrganization = async (req, res) => {
+    const { organization_id } = req.params
+
+    try {
+        const admins = await OrganizationService.FindOneAndPopulate(
+            { _id: organization_id },
+            'admins'
+            )
+
+        return res.status(200).json({
+            success: true,
+            data: admins
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Error occurred while fetching admin list'
+        })
+    }
+}
+
 const GetAllOrganizations = async (req, res) => {
     try {
         const organizations = await OrganizationService.Find()
@@ -22,7 +43,8 @@ const AddOrganization = async (req, res) => {
             org_description,
             org_country,
             org_city,
-            org_picture
+            org_picture,
+            admins
         } = req.body
 
         const existing_organization = await OrganizationService.FindOne({
@@ -41,7 +63,8 @@ const AddOrganization = async (req, res) => {
             org_description,
             org_country,
             org_city,
-            org_picture
+            org_picture,
+            admins
         })
 
         return res.status(200).json({
@@ -64,7 +87,8 @@ const UpdateOrganization = async (req, res) => {
             org_description,
             org_country,
             org_city,
-            org_picture
+            org_picture,
+            admins
         } = req.body
 
         const organization = await OrganizationService.FindOne({
@@ -85,7 +109,8 @@ const UpdateOrganization = async (req, res) => {
                 org_description,
                 org_country,
                 org_city,
-                org_picture
+                org_picture,
+                admins
             }
         )
 
@@ -120,6 +145,7 @@ const DeleteOrganization = async (req, res) => {
 
 module.exports = {
     GetAllOrganizations,
+    GetAdminsByOrganization,
     AddOrganization,
     UpdateOrganization,
     DeleteOrganization
