@@ -91,7 +91,7 @@ const UpdateOrganization = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            error: 'Organization updated'
+            message: 'Organization updated'
         }) 
     } catch (error) {
         return res.status(500).json({
@@ -108,7 +108,7 @@ const DeleteOrganization = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            data: 'Organization successfully deleted'
+            message: 'Organization successfully deleted'
         })
     } catch (error) {
         return res.status(500).json({

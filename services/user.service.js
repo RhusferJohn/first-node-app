@@ -1,7 +1,7 @@
 const User = require('../models/user.model')
 
-const Find = async () => {
-    const user = await User.find({})
+const Find = async (query) => {
+    const user = await User.find(query)
     return user
 }
 
